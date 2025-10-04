@@ -10,3 +10,7 @@ slug: index
 Hello there! I am Kedar, a final year Computer Science undergrad. I am passionate about game development, low level programming, CUDA, and code optimisation. 
 
 I created the blog using my own static site generator which I call **bread**
+
+# Articles
+
+{{ post_list }}
