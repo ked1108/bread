@@ -122,7 +122,7 @@ fn generate_post_list(posts: &[PostMetadata]) -> String {
     for post in posts {
         html.push_str(&format!(
             r#"  <article class="post-item">
-    <h3><a href="{}">{}</a></h3>
+    <h3><a href="/bread/{}">{}</a></h3>
     <div class="post-meta">
       <span class="post-date">{}</span>
       <span class="post-tags">{}</span>
