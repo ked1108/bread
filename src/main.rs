@@ -4,8 +4,8 @@ use serde::Serialize;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
-use tinytemplate::format_unescaped;
 use tinytemplate::TinyTemplate;
+use tinytemplate::format_unescaped;
 
 #[derive(Parser, Debug)]
 #[command(version, about = "Bread: A minimal static site generator", long_about = None)]
@@ -238,13 +238,13 @@ fn generate_posts_page(
                 .join("");
 
             format!(
-                r#"          <article class="post-item">
-            <h3><a href="{}">{}</a></h3>
+                r#"          <div class="post-item">
+            <h3><a href="/bread/{}">{}</a></h3>
             <div class="post-meta">
               <span class="post-date">{}</span>
               <span class="post-tags">{}</span>
             </div>
-          </article>
+          </div>
 "#,
                 post.url, post.title, post.date, tags_html
             )

@@ -1,14 +1,22 @@
 /* Toasted Bread with Butter & Jam Color Scheme */
 :root {
     /* Main colors inspired by toast, butter, and jam */
-    --toast-light: #f6e3a7;      /* Light buttery toast */
-    --toast-medium: #e6c892;     /* Perfectly toasted bread */
-    --toast-dark: #c98a54;       /* Crispy edges */
-    --butter-cream: #fdf3e8;     /* Creamy butter background */
-    --jam-berry: #e15952;        /* Strawberry jam accent */
-    --jam-dark: #c44844;         /* Deep berry */
-    --crust-brown: #8b5a3c;      /* Toasted crust */
-    --text-dark: #3d2817;        /* Rich brown text */
+    --toast-light: #f6e3a7;
+    /* Light buttery toast */
+    --toast-medium: #e6c892;
+    /* Perfectly toasted bread */
+    --toast-dark: #c98a54;
+    /* Crispy edges */
+    --butter-cream: #fdf3e8;
+    /* Creamy butter background */
+    --jam-berry: #e15952;
+    /* Strawberry jam accent */
+    --jam-dark: #c44844;
+    /* Deep berry */
+    --crust-brown: #8b5a3c;
+    /* Toasted crust */
+    --text-dark: #3d2817;
+    /* Rich brown text */
 }
 
 html {
@@ -25,28 +33,37 @@ body {
     color: var(--text-dark);
     font-size: 1.2rem;
     min-height: 100vh;
-    /* position: relative;
-    padding-bottom: 5%; */
-
     display: flex;
     flex-direction: column;
 }
 
-/* Header with bread icon */
 .site-header {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: var(--toast-dark);
+    border-bottom: 4px solid var(--crust-brown);
     z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
 }
 
 .bread-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
-    font-size: 40px;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
     text-decoration: none;
     background: var(--toast-dark);
     border-radius: 10px;
@@ -55,31 +72,53 @@ body {
     position: relative;
 }
 
-/* Diagonal striped shadow decoration for bread icon */
-.bread-icon::after {
+.site-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    background: var(--crust-brown);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
     content: '';
     position: absolute;
-    bottom: -6px;
-    right: -6px;
+    bottom: -3px;
+    right: -3px;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--crust-brown),
-        var(--crust-brown) 4px,
-        var(--toast-dark) 4px,
-        var(--toast-dark) 8px
-    );
-    border-radius: 10px;
+    background: repeating-linear-gradient(45deg,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2) 2px,
+            transparent 2px,
+            transparent 4px);
+    border-radius: 8px;
     z-index: -1;
+    opacity: 0;
     transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: var(--jam-berry);
+    border-color: var(--jam-dark);
 }
 
 .site-content {
     flex: 1 0 auto;
     display: flex;
     justify-content: center;
-    padding: 3rem 2rem;
+    padding: 6rem 2rem 3rem 2rem;
 }
 
 /* Clean article card with diagonal striped shadow corner */
@@ -101,17 +140,14 @@ article::after {
     right: -12px;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--crust-brown),
-        var(--crust-brown) 6px,
-        var(--toast-dark) 6px,
-        var(--toast-dark) 12px
-    );
+    background: repeating-linear-gradient(45deg,
+            var(--crust-brown),
+            var(--crust-brown) 6px,
+            var(--toast-dark) 6px,
+            var(--toast-dark) 12px);
     border-radius: 4px;
     z-index: -1;
 }
-
 
 h1 {
     color: var(--crust-brown);
@@ -227,7 +263,8 @@ blockquote::before {
     line-height: 1;
 }
 
-ul, ol {
+ul,
+ol {
     margin: 1.5rem 0;
     padding-left: 2rem;
     font-size: 1.2rem;
@@ -255,14 +292,12 @@ em {
 hr {
     border: none;
     height: 3px;
-    background: linear-gradient(
-        to right, 
-        transparent, 
-        var(--toast-light) 20%, 
-        var(--toast-medium) 50%, 
-        var(--toast-light) 80%, 
-        transparent
-    );
+    background: linear-gradient(to right,
+            transparent,
+            var(--toast-light) 20%,
+            var(--toast-medium) 50%,
+            var(--toast-light) 80%,
+            transparent);
     margin: 3rem 0;
 }
 
@@ -344,14 +379,57 @@ input[type="checkbox"] {
     transition: all 0.3s ease;
 }
 
-
-/* Posts page specific styles */
-.posts-nav {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 3px solid var(--toast-medium);
+/* Posts page specific layout */
+.posts-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.posts-main {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 6rem 2rem 3rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.posts-article {
+    max-width: 680px;
+    width: 100%;
+    padding: 4rem 3.5rem;
+    background: #ffffff;
+    border: 3px solid var(--toast-dark);
+    border-radius: 4px;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* Diagonal striped shadow for posts article */
+.posts-article::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg,
+            var(--crust-brown),
+            var(--crust-brown) 6px,
+            var(--toast-dark) 6px,
+            var(--toast-dark) 12px);
+    border-radius: 4px;
+    z-index: -1;
+}
+
+/* Posts controls styling */
 .posts-controls {
     margin: 2rem 0;
     display: flex;
@@ -377,6 +455,7 @@ input[type="checkbox"] {
     box-shadow: 0 0 0 3px rgba(225, 89, 82, 0.1);
 }
 
+/* Posts container */
 .posts-container {
     margin: 2rem 0;
 }
@@ -392,96 +471,364 @@ input[type="checkbox"] {
     background: var(--jam-dark);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* ========================================
+   RESPONSIVE MEDIA QUERIES
+   ======================================== */
+
+/* Tablet devices (portrait and landscape) */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 1.1rem;
+    }
+
+    .site-header {
+        padding: 0.8rem 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .bread-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 28px;
+    }
+
+    .site-nav {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.4rem 1rem;
+    }
+
+    .site-content {
+        padding: 5rem 1.5rem 2rem 1.5rem;
+    }
+
+    article,
+    .posts-article {
+        padding: 3rem 2.5rem;
+        border-width: 2px;
+    }
+
+    article::after,
+    .posts-article::after {
+        bottom: -8px;
+        right: -8px;
+        background: repeating-linear-gradient(45deg,
+                var(--crust-brown),
+                var(--crust-brown) 4px,
+                var(--toast-dark) 4px,
+                var(--toast-dark) 8px);
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.6rem;
+        border-bottom-width: 3px;
+    }
+
+    h1::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    h2 {
+        font-size: 1.7rem;
+        margin-top: 2rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+        margin-top: 1.5rem;
+    }
+
+    p,
+    ul,
+    ol {
+        font-size: 1.1rem;
+    }
+
+    blockquote {
+        padding: 0.8em 1.2em;
+        font-size: 1.05rem;
+    }
+
+    blockquote::before {
+        font-size: 3rem;
+        left: 5px;
+        top: -5px;
+    }
+
+    pre {
+        padding: 1.2em;
+        font-size: 0.95rem;
+        border-left-width: 4px;
+        margin: 1.5rem 0;
+    }
+
+    code {
+        font-size: 0.95rem;
+        padding: 0.2em 0.5em;
+    }
+
+    table {
+        font-size: 1rem;
+    }
+
+    th,
+    td {
+        padding: 0.8rem;
+    }
+
+    .posts-main {
+        padding: 5rem 1.5rem 2rem 1.5rem;
+    }
+
     .posts-controls {
         flex-direction: column;
     }
-    
+
     .posts-controls input,
     .posts-controls select {
-        min-width: auto;
+        min-width: 100%;
+    }
+
+    .meta {
+        font-size: 0.95rem;
+        padding: 1.2rem;
     }
 }
 
-/* Responsive design - Medium's approach */
-@media (max-width: 768px) {
-    .site-header {
-        top: 10px;
-        left: 10px;
-    }
-    
-    .bread-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 32px;
+/* Mobile devices (portrait) */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 1rem;
     }
 
-    body {
-        font-size: 1.1rem;
-        padding-bottom: 100px;
+    .site-header {
+        padding: 0.6rem 1rem;
     }
-    
-    article {
-        max-width: 100%;
-        margin: 4rem 1.5rem 3rem 1.5rem;
-        padding: 2.5rem 2rem;
-        border-width: 6px;
+
+    .bread-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        border-width: 2px;
     }
-    
-    article::after {
-        display: none; /* Hide decorative crumbs on mobile */
+
+    .bread-icon::after {
+        bottom: -3px;
+        right: -3px;
+        background: repeating-linear-gradient(45deg,
+                var(--crust-brown),
+                var(--crust-brown) 2px,
+                var(--toast-medium) 2px,
+                var(--toast-medium) 4px);
     }
-    
+
+    .bread-icon:hover::after {
+        bottom: -4px;
+        right: -4px;
+    }
+
+    .site-nav {
+        gap: 0.5rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .site-content {
+        padding: 4.5rem 1rem 1.5rem 1rem;
+    }
+
+    article,
+    .posts-article {
+        padding: 2rem 1.5rem;
+        border-width: 2px;
+    }
+
+    article::after,
+    .posts-article::after {
+        bottom: -6px;
+        right: -6px;
+        background: repeating-linear-gradient(45deg,
+                var(--crust-brown),
+                var(--crust-brown) 3px,
+                var(--toast-dark) 3px,
+                var(--toast-dark) 6px);
+    }
+
     h1 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom-width: 3px;
     }
-    
+
+    h1::after {
+        width: 50px;
+        height: 3px;
+    }
+
     h2 {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
+        margin-top: 1.8rem;
     }
-    
+
     h3 {
+        font-size: 1.2rem;
+        margin-top: 1.3rem;
+    }
+
+    p,
+    ul,
+    ol {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    li {
+        margin-bottom: 0.6rem;
+    }
+
+    blockquote {
+        padding: 0.7em 1em;
+        font-size: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    blockquote::before {
+        font-size: 2.5rem;
+        left: 3px;
+        top: -3px;
+    }
+
+    pre {
+        padding: 1em;
+        font-size: 0.85rem;
+        border-left-width: 3px;
+        margin: 1.5rem -0.5rem;
+        border-radius: 4px;
+    }
+
+    code {
+        font-size: 0.9rem;
+        padding: 0.2em 0.4em;
+    }
+
+    ul,
+    ol {
+        padding-left: 1.5rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th,
+    td {
+        padding: 0.6rem;
+    }
+
+    hr {
+        margin: 2rem 0;
+        height: 2px;
+    }
+
+    .posts-main {
+        padding: 4.5rem 1rem 1.5rem 1rem;
+    }
+
+    .posts-controls {
+        margin: 1.5rem 0;
+    }
+
+    .posts-controls input,
+    .posts-controls select {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        padding: 0.1rem 0.3rem;
+    }
+
+    .meta {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+
+    input[type="checkbox"] {
+        transform: scale(1.1);
+    }
+}
+
+/* Extra small mobile devices */
+@media screen and (max-width: 360px) {
+    .site-header {
+        padding: 0.5rem 0.8rem;
+    }
+
+    .bread-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    article,
+    .posts-article {
+        padding: 1.5rem 1rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
         font-size: 1.3rem;
     }
-    
-    pre {
-        margin-left: -1rem;
-        margin-right: -1rem;
-        border-radius: 0;
+
+    h3 {
+        font-size: 1.1rem;
     }
 }
 
-@media (max-width: 480px) {
-    .site-content {
-        padding: 1rem;  /* ADD THIS */
+/* Large desktop screens */
+@media screen and (min-width: 1200px) {
+
+    article,
+    .posts-article {
+        max-width: 800px;
+        padding: 4.5rem 4rem;
     }
-    
-    article {
-        padding: 2rem 1.5rem;
-        border-width: 4px;
-        width: 100%;
-    }
-    
+
     h1 {
-        font-size: 1.9rem;
+        font-size: 3rem;
     }
-}
 
-/* Print styles */
-@media print {
-    body {
-        background: white;
+    h2 {
+        font-size: 2.2rem;
     }
-    
-    article {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        max-width: 100%;
-    }
-    
-    article::before,
-    article::after {
-        display: none;
+
+    h3 {
+        font-size: 1.7rem;
     }
 }
