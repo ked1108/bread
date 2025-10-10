@@ -11,6 +11,4 @@ Hello there! I am Kedar, a final year Computer Science undergrad. I am passionat
 
 I created the blog using my own static site generator which I call **bread**
 
-# Articles
 
-{{ post_list }}

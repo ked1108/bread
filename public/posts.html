@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍞 All Posts</title>
+    <meta name="description" content="Browse all blog posts">
+    <meta name="keywords" content="blog, posts, articles">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍞</text></svg>">
+    <link rel="stylesheet" href="/bread/style.css">
+    <script src="/bread/script.js"></script>
+</head>
+<body>
+    <main class="container">
+        <header class="posts-nav">
+            <div class="site-header">
+                <a href="/" class="bread-icon" title="Home">🍞</a>
+            </div>
+            <h1>All Posts</h1>
+        </header>
+        
+        <div class="posts-controls">
+            <input type="text" id="search-input" placeholder="Search posts..." />
+            <select id="tag-filter">
+                <option value="">All Tags</option>
+                        <option value="test">#test</option>
+            </select>
+        </div>
+        
+        <div class="posts-container">
+                      <article class="post-item">
+            <h3><a href="/posts/test.html">Test Post</a></h3>
+            <div class="post-meta">
+              <span class="post-date">2025-10-04</span>
+              <span class="post-tags"><span class="tag clickable-tag" data-tag="test">#test</span></span>
+            </div>
+          </article>
+
+        </div>
+    </main>
+</body>
+</html>
+
