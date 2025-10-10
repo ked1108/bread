@@ -1,7 +1,9 @@
 ---
 title: Kedar's Blog
 date: 2025-10-04
-tags: welcome, intro, rust
+tags:
+  - welcome
+  - intro
 slug: index
 ---
 

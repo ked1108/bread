@@ -4,8 +4,8 @@ use serde::Serialize;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
-use tinytemplate::TinyTemplate;
 use tinytemplate::format_unescaped;
+use tinytemplate::TinyTemplate;
 
 #[derive(Parser, Debug)]
 #[command(version, about = "Bread: A minimal static site generator", long_about = None)]
@@ -55,46 +55,73 @@ struct Frontmatter {
 impl Frontmatter {
     fn parse(content: &str) -> (Self, &str) {
         let mut frontmatter = Frontmatter::default();
-
         if !content.starts_with("---") {
             return (frontmatter, content);
         }
-
         let Some(end_pos) = content[3..].find("\n---") else {
             return (frontmatter, content);
         };
-
         let fm_section = &content[3..3 + end_pos];
         let markdown_content = &content[3 + end_pos + 4..];
 
-        for line in fm_section.lines() {
-            let line = line.trim();
-            if line.is_empty() {
+        let mut lines = fm_section.lines().peekable();
+        let mut current_key: Option<&str> = None;
+        let mut tag_list: Vec<String> = Vec::new();
+
+        while let Some(line) = lines.next() {
+            let trimmed = line.trim();
+
+            if trimmed.is_empty() {
                 continue;
             }
 
-            let Some(colon_pos) = line.find(':') else {
-                continue;
-            };
-
-            let key = line[..colon_pos].trim();
-            let value = line[colon_pos + 1..].trim();
-
-            match key {
-                "title" => frontmatter.title = Some(value.to_string()),
-                "date" => frontmatter.date = Some(value.to_string()),
-                "slug" => frontmatter.slug = Some(value.to_string()),
-                "tags" => {
-                    frontmatter.tags = Some(
-                        value
-                            .split(',')
-                            .map(|s| s.trim().to_string())
-                            .filter(|s| !s.is_empty())
-                            .collect(),
-                    );
+            if trimmed.starts_with('-') {
+                if current_key == Some("tags") {
+                    let tag = trimmed[1..].trim().to_string();
+                    if !tag.is_empty() {
+                        tag_list.push(tag);
+                    }
                 }
-                _ => {}
+                continue;
             }
+
+            if let Some(colon_pos) = trimmed.find(':') {
+                if current_key == Some("tags") && !tag_list.is_empty() {
+                    frontmatter.tags = Some(tag_list.clone());
+                    tag_list.clear();
+                }
+
+                let key = trimmed[..colon_pos].trim();
+                let value = trimmed[colon_pos + 1..].trim();
+
+                current_key = Some(key);
+
+                match key {
+                    "title" => frontmatter.title = Some(value.to_string()),
+                    "date" => frontmatter.date = Some(value.to_string()),
+                    "slug" => frontmatter.slug = Some(value.to_string()),
+                    "tags" => {
+                        if !value.is_empty() {
+                            frontmatter.tags = Some(
+                                value
+                                    .split(',')
+                                    .map(|s| s.trim().to_string())
+                                    .filter(|s| !s.is_empty())
+                                    .collect(),
+                            );
+                            current_key = None;
+                        }
+                    }
+                    _ => {
+                        current_key = None;
+                    }
+                }
+            }
+        }
+
+        // Don't forget to save tags if we were collecting them at the end
+        if current_key == Some("tags") && !tag_list.is_empty() {
+            frontmatter.tags = Some(tag_list);
         }
 
         (frontmatter, markdown_content.trim_start())
