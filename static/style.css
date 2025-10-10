@@ -1,14 +1,22 @@
 /* Toasted Bread with Butter & Jam Color Scheme */
 :root {
     /* Main colors inspired by toast, butter, and jam */
-    --toast-light: #f6e3a7;      /* Light buttery toast */
-    --toast-medium: #e6c892;     /* Perfectly toasted bread */
-    --toast-dark: #c98a54;       /* Crispy edges */
-    --butter-cream: #fdf3e8;     /* Creamy butter background */
-    --jam-berry: #e15952;        /* Strawberry jam accent */
-    --jam-dark: #c44844;         /* Deep berry */
-    --crust-brown: #8b5a3c;      /* Toasted crust */
-    --text-dark: #3d2817;        /* Rich brown text */
+    --toast-light: #f6e3a7;
+    /* Light buttery toast */
+    --toast-medium: #e6c892;
+    /* Perfectly toasted bread */
+    --toast-dark: #c98a54;
+    /* Crispy edges */
+    --butter-cream: #fdf3e8;
+    /* Creamy butter background */
+    --jam-berry: #e15952;
+    /* Strawberry jam accent */
+    --jam-dark: #c44844;
+    /* Deep berry */
+    --crust-brown: #8b5a3c;
+    /* Toasted crust */
+    --text-dark: #3d2817;
+    /* Rich brown text */
 }
 
 html {
@@ -32,7 +40,7 @@ body {
     flex-direction: column;
 }
 
-/* Header with bread icon */
+/* 
 .site-header {
     position: fixed;
     top: 20px;
@@ -55,7 +63,6 @@ body {
     position: relative;
 }
 
-/* Diagonal striped shadow decoration for bread icon */
 .bread-icon::after {
     content: '';
     position: absolute;
@@ -63,23 +70,135 @@ body {
     right: -6px;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--crust-brown),
-        var(--crust-brown) 4px,
-        var(--toast-dark) 4px,
-        var(--toast-dark) 8px
-    );
+    background: repeating-linear-gradient(45deg,
+            var(--crust-brown),
+            var(--crust-brown) 4px,
+            var(--toast-dark) 4px,
+            var(--toast-dark) 8px);
     border-radius: 10px;
     z-index: -1;
     transition: all 0.3s ease;
 }
 
+*/
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: var(--toast-dark);
+    border-bottom: 4px solid var(--crust-brown);
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.bread-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+    text-decoration: none;
+    background: var(--toast-dark);
+    border-radius: 10px;
+    border: 3px solid var(--crust-brown);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.bread-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg,
+            var(--crust-brown),
+            var(--crust-brown) 3px,
+            var(--toast-medium) 3px,
+            var(--toast-medium) 6px);
+    border-radius: 10px;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.bread-icon:hover {
+    transform: translate(-2px, -2px);
+    filter: brightness(1.2);
+}
+
+.bread-icon:hover::after {
+    bottom: -6px;
+    right: -6px;
+}
+
+.site-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    background: var(--crust-brown);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2) 2px,
+            transparent 2px,
+            transparent 4px);
+    border-radius: 8px;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: var(--jam-berry);
+    border-color: var(--jam-dark);
+    transform: translate(-2px, -2px);
+}
+
+.nav-link:hover::after {
+    opacity: 1;
+    bottom: -5px;
+    right: -5px;
+}
+
+
 .site-content {
     flex: 1 0 auto;
     display: flex;
     justify-content: center;
-    padding: 3rem 2rem;
+    padding: 6rem 2rem 3rem 2rem;
 }
 
 /* Clean article card with diagonal striped shadow corner */
@@ -101,13 +220,11 @@ article::after {
     right: -12px;
     width: 100%;
     height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--crust-brown),
-        var(--crust-brown) 6px,
-        var(--toast-dark) 6px,
-        var(--toast-dark) 12px
-    );
+    background: repeating-linear-gradient(45deg,
+            var(--crust-brown),
+            var(--crust-brown) 6px,
+            var(--toast-dark) 6px,
+            var(--toast-dark) 12px);
     border-radius: 4px;
     z-index: -1;
 }
@@ -227,7 +344,8 @@ blockquote::before {
     line-height: 1;
 }
 
-ul, ol {
+ul,
+ol {
     margin: 1.5rem 0;
     padding-left: 2rem;
     font-size: 1.2rem;
@@ -255,14 +373,12 @@ em {
 hr {
     border: none;
     height: 3px;
-    background: linear-gradient(
-        to right, 
-        transparent, 
-        var(--toast-light) 20%, 
-        var(--toast-medium) 50%, 
-        var(--toast-light) 80%, 
-        transparent
-    );
+    background: linear-gradient(to right,
+            transparent,
+            var(--toast-light) 20%,
+            var(--toast-medium) 50%,
+            var(--toast-light) 80%,
+            transparent);
     margin: 3rem 0;
 }
 
@@ -397,7 +513,7 @@ input[type="checkbox"] {
     .posts-controls {
         flex-direction: column;
     }
-    
+
     .posts-controls input,
     .posts-controls select {
         min-width: auto;
@@ -410,7 +526,7 @@ input[type="checkbox"] {
         top: 10px;
         left: 10px;
     }
-    
+
     .bread-icon {
         width: 50px;
         height: 50px;
@@ -421,30 +537,31 @@ input[type="checkbox"] {
         font-size: 1.1rem;
         padding-bottom: 100px;
     }
-    
+
     article {
         max-width: 100%;
         margin: 4rem 1.5rem 3rem 1.5rem;
         padding: 2.5rem 2rem;
         border-width: 6px;
     }
-    
+
     article::after {
-        display: none; /* Hide decorative crumbs on mobile */
+        display: none;
+        /* Hide decorative crumbs on mobile */
     }
-    
+
     h1 {
         font-size: 2.2rem;
     }
-    
+
     h2 {
         font-size: 1.7rem;
     }
-    
+
     h3 {
         font-size: 1.3rem;
     }
-    
+
     pre {
         margin-left: -1rem;
         margin-right: -1rem;
@@ -454,15 +571,16 @@ input[type="checkbox"] {
 
 @media (max-width: 480px) {
     .site-content {
-        padding: 1rem;  /* ADD THIS */
+        padding: 1rem;
+        /* ADD THIS */
     }
-    
+
     article {
         padding: 2rem 1.5rem;
         border-width: 4px;
         width: 100%;
     }
-    
+
     h1 {
         font-size: 1.9rem;
     }
@@ -473,13 +591,13 @@ input[type="checkbox"] {
     body {
         background: white;
     }
-    
+
     article {
         box-shadow: none;
         border: 1px solid #ccc;
         max-width: 100%;
     }
-    
+
     article::before,
     article::after {
         display: none;
